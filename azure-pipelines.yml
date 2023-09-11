@@ -17,23 +17,20 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-
 - task: S3Upload@1
   inputs:
     awsCredentials: 'AWS_44'
     regionName: 'us-east-1'
     bucketName: 'prahaladawscloudevent'
     globExpressions: 'awscft.json'
-
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
     awsCredentials: 'AWS_44'
     regionName: 'us-east-1'
-    stackName: '$(stackName)'
+    stackName: $(stackName)
     templateSource: 'url'
     templateUrl: 'https://prahaladawscloudevent.s3.ap-south-1.amazonaws.com/awscft.json'
-    templateParametersSource: 'inline'
+    templateParametersSource: "inline"
     templateParameters: |
       - ParameterKey: deploymentID
         ParameterValue: $(deploymentID)
-
