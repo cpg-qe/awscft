@@ -27,7 +27,7 @@ steps:
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
-    awsCredentials: 'AWS_44'
+    awsCredentials: $(service-connection)
     regionName: $(region)
     stackName: $(stackName)
     templateSource: 'url'
