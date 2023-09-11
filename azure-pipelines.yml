@@ -28,7 +28,7 @@ steps:
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
     awsCredentials: 'AWS_44'
-    regionName: 'us-east-1'
+    regionName: $(region)
     stackName: $(stackName)
     templateSource: 'url'
     templateUrl: 'https://prahaladawscloudevent.s3.ap-south-1.amazonaws.com/awscft.json'
