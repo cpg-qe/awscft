@@ -1,6 +1,5 @@
 trigger:
-- pipeline: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
-  source: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
+- main  # Replace 'main' with the appropriate branch trigger
 
 pool:
   vmImage: 'ubuntu-latest'
