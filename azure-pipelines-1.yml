@@ -1,0 +1,28 @@
+trigger:
+- pipeline: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
+  source: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
+
+prerequisites:
+- job: Initialize
+  steps:
+  - script: echo "Initialize cleanup environment"
+    displayName: 'Initialize Cleanup'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Cleanup
+  jobs:
+  - job: CleanupResources
+    steps:
+    - task: AWSCLI@1
+      displayName: 'AWS CLI - Delete CloudFormation Stack'
+      inputs:
+        awsCredentials: $(service-connection)
+        regionName: $(name)
+        scriptType: 'inline'
+        inlineScript: |
+          # Delete the CloudFormation stack
+          aws cloudformation delete-stack --stack-name $(stackName)  # Use $(stackName) as an input variable
+          # Add additional cleanup commands as needed
