@@ -2,12 +2,6 @@ trigger:
 - pipeline: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
   source: cpg-qe.awscft  # Replace 'DeploymentPipeline' with the name of your deployment pipeline
 
-prerequisites:
-- job: Initialize
-  steps:
-  - script: echo "Initialize cleanup environment"
-    displayName: 'Initialize Cleanup'
-
 pool:
   vmImage: 'ubuntu-latest'
 
