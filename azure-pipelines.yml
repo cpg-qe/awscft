@@ -1,38 +1,33 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main  # Replace 'main' with the appropriate branch trigger
+
+prerequisites:
+- job: Initialize
+  steps:
+  - script: echo "Initialize deployment environment"
+    displayName: 'Initialize Deployment'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-# - task: S3Upload@1
-#   inputs:
-#     awsCredentials: 'AWS_44'
-#     regionName: 'us-east-1'
-#     bucketName: 'prahaladawscloudevent'
-#     globExpressions: 'awscft.json'
-
-- task: CloudFormationCreateOrUpdateStack@1
-  inputs:
-    awsCredentials: $(service-connection)
-    regionName: $(name)
-    stackName: $(stackName)
-    templateSource: 'url'
-    templateUrl: 'https://prahaladawscloudevent.s3.ap-south-1.amazonaws.com/awscft.json'
-    templateParametersSource: "inline"
-    templateParameters: |
-      - ParameterKey: deploymentID
-        ParameterValue: $(deploymentID)
+stages:
+- stage: Deploy
+  jobs:
+  - job: DeployCloudFormation
+    steps:
+    - task: CloudFormationCreateOrUpdateStack@1
+      displayName: 'Create or Update CloudFormation Stack'
+      inputs:
+        awsCredentials: $(service-connection)
+        regionName: $(name)
+        stackName: $(stackName)  # Define the stackName parameter here
+        templateSource: 'url'
+        templateUrl: 'https://prahaladawscloudevent.s3.ap-south-1.amazonaws.com/awscft.json'
+        templateParametersSource: 'inline'
+        templateParameters: |
+          - ParameterKey: deploymentID
+            ParameterValue: $(deploymentID)
+    
+    # Set an output variable for stackName
+    - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
+      displayName: 'Set Stack Name Output Variable'
