@@ -1,12 +1,6 @@
 trigger:
 - main  # Replace 'main' with the appropriate branch trigger
 
-prerequisites:
-- job: Initialize
-  steps:
-  - script: echo "Initialize deployment environment"
-    displayName: 'Initialize Deployment'
-
 pool:
   vmImage: 'ubuntu-latest'
 
