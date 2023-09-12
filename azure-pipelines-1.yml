@@ -9,13 +9,11 @@ stages:
   jobs:
   - job: CleanupResources
     steps:
-    - task: AWSCLI@1
-      displayName: 'AWS CLI - Delete CloudFormation Stack'
+    
+    - task: CloudFormationDeleteStack@1
       inputs:
         awsCredentials: $(service-connection)
         regionName: $(name)
-        scriptType: 'inline'
-        inlineScript: |
-          # Delete the CloudFormation stack
-          aws cloudformation delete-stack --stack-name $(stackName)  # Use $(stackName) as an input variable
-          # Add additional cleanup commands as needed
+        stackName: $(stackName)
+        logRequest: true
+        logResponse: true
