@@ -16,7 +16,7 @@ stages:
         regionName: $(name)
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: $(templateUrl)
+        templateUrl: 'https://raw.githubusercontent.com/cpg-qe/awscft/main/awscft.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
