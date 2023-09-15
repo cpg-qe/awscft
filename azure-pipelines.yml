@@ -16,7 +16,7 @@ stages:
         regionName: $(name)
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: 'https://prahaladawscloudevent.s3.ap-south-1.amazonaws.com/awscft.json'
+        templateUrl: 'https://csc-ado-test-dnd.s3.amazonaws.com/awscft/awscft.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
