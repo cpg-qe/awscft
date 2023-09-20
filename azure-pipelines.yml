@@ -13,7 +13,7 @@ stages:
       displayName: 'Create or Update CloudFormation Stack'
       inputs:
         awsCredentials: $(service-connection)
-        regionName: $(name)
+        regionName: $(region)
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
         templateUrl: 'https://csc-ado-test-dnd.s3.amazonaws.com/awscft/awscft.json'
