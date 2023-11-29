@@ -16,7 +16,7 @@ stages:
         regionName: $(region)
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: 'https://csc-aws-ado-dnd.s3.amazonaws.com/awscft/basic-cft-yaml-template+(1)'
+        templateUrl: 'https://csc-aws-ado-dnd.s3.amazonaws.com/awscft/awsUpdatecftyaml.yml'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
