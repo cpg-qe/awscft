@@ -16,7 +16,7 @@ stages:
         regionName: $(region)
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: 'https://csc-aws-ado-dnd.s3.amazonaws.com/awscft/awsupdateecft.json'
+        templateUrl: 'https://csc-aws-ado-dnd.s3.amazonaws.com/awscft/VPCCFTAWS'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
