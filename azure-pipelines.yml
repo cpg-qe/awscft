@@ -16,7 +16,7 @@ stages:
         regionName: 'us-east-1'
         stackName: $(stackName)  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: 'https://csc-aws-ado-dnd.s3.amazonaws.com/awscft/fullvpcscenario.json'
+        templateUrl: 'https://csc-aws-ado-dnd.s3.us-east-1.amazonaws.com/awscft/fullvpcscenario1.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
